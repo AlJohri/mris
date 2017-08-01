@@ -1,10 +1,5 @@
-#!/usr/bin/env python3
-
-import json
-import logging
-import argparse
 import requests
-import itertools
+import logging
 
 # http://www.mrishomes.com/include/ajax/api.aspx?op=GetDmpApiKey
 # http://m.mrishomes.com/mobile/listing/listingsearch.aspx
@@ -19,6 +14,11 @@ sort_options = {
 # Criteria/LocationBox:FX9921147
 # Criteria/LocationBox:FX9921147
 
+def process_item(item):
+    item_id = item['ListingID']
+    url = f"http://www.mrishomes.com/homes-for-sale/x-{item_id}"
+    return {"url": url, **item}
+    
 def search(per_page=10, sort="low_to_high"):
 
     sort_id = sort_options[sort]
@@ -61,7 +61,7 @@ def search(per_page=10, sort="low_to_high"):
     count = data['count']
     logging.debug(f"count: {count}")
     assert per_page == data['pageCount']
-    yield from data['ListingResultSet']['Items'] # [0,per_page-1] of length per_page
+    yield from (process_item(x) for x in data['ListingResultSet']['Items']) # [0,per_page-1] of length per_page
 
     for offset in range(per_page, count+per_page, per_page):
         logging.debug(f"offset: {offset}")
@@ -78,9 +78,4 @@ def search(per_page=10, sort="low_to_high"):
         page = data['page']
         logging.debug(f"page: {page}")
         assert data['resultsPerPage'] == per_page
-        yield from data['ListingResultSet']['Items'] # [offset, offset+per_page-1] of length per_page
-
-if __name__ == '__main__':
-    limit = 500
-    for listing in itertools.islice(search(), limit):
-        print(json.dumps(listing))
+        yield from (process_item(x) for x in data['ListingResultSet']['Items']) # [offset, offset+per_page-1] of length per_page

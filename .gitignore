@@ -1,0 +1,11 @@
+.env
+*.pyc
+.DS_Store
+__pycache__
+.idea
+*.egg-info
+.coverage
+.cache
+dist
+build
+.eggs

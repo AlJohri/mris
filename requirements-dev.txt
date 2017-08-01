@@ -1,0 +1,5 @@
+pytest==3.0.3
+coverage==4.2
+coveralls==1.1
+pep8==1.7.0
+twine==1.9.1
