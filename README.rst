@@ -1,7 +1,7 @@
 mris
 ==========================
 
-Python wrapper for mris. Requires Python 3.6+.
+Python wrapper for [mris](http://www.mrishomes.com/). Requires Python 3.6+.
 
 Install
 -------
