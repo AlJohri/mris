@@ -8,7 +8,7 @@ Install
 
 ::
 
-    pip3 install --upgrade mris
+    pip3 install --upgrade git+https://github.com/AlJohri/mris.git
 
 
 Development
