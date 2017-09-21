@@ -30,7 +30,6 @@ Setup
 
 ::
 
-    mkvirtualenv mris -p python3.6
     make install
 
 Test
@@ -38,7 +37,6 @@ Test
 
 ::
 
-    workon mris
     make test
 
 .. _mris: http://www.mrishomes.com/

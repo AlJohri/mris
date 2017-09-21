@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+
+[packages]
+
+requests = "*"
+cssselect = "*"
+lxml = "*"
+blessings = "*"
+arrow = "*"
+
+[dev-packages]
+
+pytest = "*"
+coverage = "*"
+coveralls = "*"
+pep8 = "*"
+twine = "*"
